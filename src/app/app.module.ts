@@ -31,6 +31,11 @@ import { GoogleMaps } from '@ionic-native/google-maps';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+// Adding Angular Fire, Auth and Database
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+// Translations
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -54,6 +59,16 @@ export function provideSettings(storage: Storage) {
     option4: 'Hello'
   });
 }
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyC8eQAzeL2U93m-EEJhtTWgh-sifqxTFes",
+    authDomain: "kantaris-radio.firebaseapp.com",
+    databaseURL: "https://kantaris-radio.firebaseio.com",
+    projectId: "kantaris-radio",
+    storageBucket: "kantaris-radio.appspot.com",
+    messagingSenderId: "1032126574186"
+  };
 
 @NgModule({
   declarations: [
@@ -84,7 +99,9 @@ export function provideSettings(storage: Storage) {
       }
     }),
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(config), 
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
